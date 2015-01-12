@@ -1,17 +1,17 @@
 FROM debian:jessie
 MAINTAINER Sébastien M-B <essembeh@gmail.com>
 
+## Base packages
 RUN apt-get -q update
-RUN apt-get install -y -q locales bash-completion curl wget && apt-get clean
-RUN apt-get install -y -q zsh tmux git vim tig lftp tree moreutils realpath p7zip-full && apt-get clean
-## Devel
-#RUN apt-get install -y -q build-essential manpages && apt-get clean
+RUN apt-get install -y -q \
+	locales bash-completion curl wget file \
+	&& apt-get clean
+RUN apt-get install -y -q \
+	zsh tmux git vim tig lftp tree moreutils realpath p7zip-full \
+	&& apt-get clean
 
-## Checkout projects
-WORKDIR /root/System
-RUN git clone https://github.com/essembeh/oh-my-zsh && cd oh-my-zsh && git checkout -b sebseb origin/sebseb
-RUN git clone https://github.com/essembeh/script-utils 
-RUN git clone https://github.com/essembeh/dotfiles
+## Devel packages
+#RUN apt-get install -y -q build-essential manpages && apt-get clean
 
 ## Locale
 RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
@@ -21,6 +21,12 @@ RUN update-locale LANG=fr_FR.UTF-8
 ENV LANGUAGE fr_FR.UTF-8
 ENV LANG fr_FR.UTF-8
 ENV LC_ALL fr_FR.UTF-8
+
+## Checkout projects
+WORKDIR /root/System
+RUN git clone https://github.com/essembeh/oh-my-zsh && cd oh-my-zsh && git checkout -b sebseb origin/sebseb
+RUN git clone https://github.com/essembeh/script-utils 
+RUN git clone https://github.com/essembeh/dotfiles
 
 ## Custom env
 WORKDIR /root
@@ -39,3 +45,4 @@ RUN mv .bashrc .bashrc.0 && \
 ## Default shell
 RUN chsh root -s /bin/zsh
 CMD ["/bin/zsh"]
+
