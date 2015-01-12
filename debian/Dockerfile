@@ -9,7 +9,7 @@ RUN apt-get install -y -q zsh tmux git vim tig lftp tree moreutils realpath p7zi
 
 ## Checkout projects
 WORKDIR /root/System
-RUN git clone https://github.com/essembeh/oh-my-zsh && cd oh-my-zsh && git checkout -b custom origin/custom
+RUN git clone https://github.com/essembeh/oh-my-zsh && cd oh-my-zsh && git checkout -b sebseb origin/sebseb
 RUN git clone https://github.com/essembeh/script-utils 
 RUN git clone https://github.com/essembeh/dotfiles
 
