@@ -4,14 +4,14 @@ MAINTAINER Sébastien M-B <essembeh@gmail.com>
 ## Base packages
 RUN apt-get -q update
 RUN apt-get install -y -q \
-	locales bash-completion curl wget file \
+	locales bash-completion curl wget file man manpages \
 	&& apt-get clean
 RUN apt-get install -y -q \
 	zsh tmux git vim tig lftp tree moreutils realpath p7zip-full \
 	&& apt-get clean
 
 ## Devel packages
-#RUN apt-get install -y -q build-essential manpages && apt-get clean
+#RUN apt-get install -y -q build-essential && apt-get clean
 
 ## Locale
 RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
