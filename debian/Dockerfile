@@ -30,6 +30,7 @@ RUN git clone https://github.com/essembeh/dotfiles
 
 ## Custom env
 WORKDIR /root
+ENV HOME /root
 RUN mv .bashrc .bashrc.0 && \
 	ln -s System/oh-my-zsh .oh-my-zsh && \
 	ln -s System/dotfiles/bash/alias .alias  && \
